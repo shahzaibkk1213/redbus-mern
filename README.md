@@ -101,27 +101,12 @@ In this project , we have tried to make a perfect clone of redbus.in.
   
   ![bus book page](https://github.com/nitansh11/redbus/blob/master/Samples/bushire4.png)
   
-  13. On this page click on the button Pay with Stripe , here enter your email , card number as 4242 4242 4242 4242 , expiary date as 12/21 and CVV as 123 and click on the pay button , your bus has been booked :relaxed:
   
-  ![payment page](https://github.com/nitansh11/redbus/blob/master/Samples/bushire5.png)
 
  
-### End-notes
- 
-  We have tried our best to give mostly all the functionality available on the actual website.
 
-  
-  ### Contributors:
 
-  * Nitansh Rastogi
 
-    * Github : [nitansh11](https://github.com/nitansh11)
-
-  * Uditanshu Kumar
-
-    * Github : [udit22022000](https://github.com/udit22022000)
-
-  * Rohan Kumar Banarwal
 
     * Github : [kumarrohan2804](https://github.com/kumarrohan2804)
 

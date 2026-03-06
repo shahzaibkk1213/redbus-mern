@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RedBus MERN — Project Presentation</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #fff; }
+
+  .slide {
+    width: 100vw; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 60px 80px;
+    page-break-after: always;
+  }
+
+  /* Slide 1 — Title */
+  .s1 { background: linear-gradient(135deg, #d32f2f 0%, #7b1fa2 100%); text-align: center; }
+  .s1 .logo { font-size: 72px; margin-bottom: 10px; }
+  .s1 h1 { font-size: 56px; font-weight: 800; letter-spacing: -1px; }
+  .s1 h2 { font-size: 24px; font-weight: 300; margin-top: 12px; opacity: 0.85; }
+  .s1 .tag { margin-top: 40px; background: rgba(255,255,255,0.15); border-radius: 50px; padding: 10px 30px; font-size: 16px; display: inline-block; }
+
+  /* Slide 2 — Overview */
+  .s2 { background: #1e293b; align-items: flex-start; }
+  .s2 h2 { font-size: 40px; font-weight: 700; color: #f43f5e; margin-bottom: 40px; }
+  .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; width: 100%; }
+  .card { background: #0f172a; border-radius: 16px; padding: 28px; border-left: 4px solid #f43f5e; }
+  .card .icon { font-size: 36px; margin-bottom: 12px; }
+  .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #e2e8f0; }
+  .card p { font-size: 14px; color: #94a3b8; line-height: 1.6; }
+
+  /* Slide 3 — Tech Stack */
+  .s3 { background: #0f172a; align-items: flex-start; }
+  .s3 h2 { font-size: 40px; font-weight: 700; color: #a78bfa; margin-bottom: 40px; }
+  .stack-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; width: 100%; }
+  .stack-card { background: #1e293b; border-radius: 16px; padding: 24px; display: flex; align-items: center; gap: 20px; }
+  .stack-icon { font-size: 42px; min-width: 60px; text-align: center; }
+  .stack-card h3 { font-size: 20px; font-weight: 700; color: #e2e8f0; }
+  .stack-card p { font-size: 13px; color: #64748b; margin-top: 4px; }
+  .badge { display: inline-block; background: #7c3aed; color: #fff; font-size: 11px; padding: 2px 10px; border-radius: 20px; margin-top: 6px; }
+
+  /* Slide 4 — Architecture */
+  .s4 { background: #1e293b; }
+  .s4 h2 { font-size: 40px; font-weight: 700; color: #34d399; margin-bottom: 40px; }
+  .arch { display: flex; align-items: center; justify-content: center; gap: 0; width: 100%; flex-wrap: wrap; }
+  .arch-box { background: #0f172a; border-radius: 14px; padding: 24px 28px; text-align: center; min-width: 160px; }
+  .arch-box .icon { font-size: 40px; }
+  .arch-box h3 { font-size: 16px; font-weight: 700; margin-top: 10px; color: #e2e8f0; }
+  .arch-box p { font-size: 12px; color: #64748b; margin-top: 4px; }
+  .arch-arrow { font-size: 32px; color: #34d399; padding: 0 16px; }
+  .arch-box.frontend { border-top: 3px solid #3b82f6; }
+  .arch-box.backend { border-top: 3px solid #f59e0b; }
+  .arch-box.db { border-top: 3px solid #10b981; }
+  .arch-box.auth { border-top: 3px solid #f43f5e; }
+
+  /* Slide 5 — Features / CRUD */
+  .s5 { background: #0f172a; align-items: flex-start; }
+  .s5 h2 { font-size: 40px; font-weight: 700; color: #fb923c; margin-bottom: 40px; }
+  .feature-list { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; width: 100%; }
+  .feature { background: #1e293b; border-radius: 14px; padding: 22px 26px; display: flex; gap: 16px; align-items: flex-start; }
+  .feature .num { background: #fb923c; color: #fff; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0; }
+  .feature h3 { font-size: 17px; font-weight: 700; color: #e2e8f0; }
+  .feature p { font-size: 13px; color: #64748b; margin-top: 5px; line-height: 1.5; }
+
+  /* Slide 6 — Deployment */
+  .s6 { background: #1e293b; align-items: flex-start; }
+  .s6 h2 { font-size: 40px; font-weight: 700; color: #38bdf8; margin-bottom: 40px; }
+  .deploy-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; width: 100%; }
+  .deploy-card { background: #0f172a; border-radius: 16px; padding: 28px; text-align: center; }
+  .deploy-card .icon { font-size: 48px; margin-bottom: 14px; }
+  .deploy-card h3 { font-size: 18px; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; }
+  .deploy-card .url { font-size: 12px; color: #38bdf8; word-break: break-all; background: #1e293b; border-radius: 8px; padding: 8px 12px; margin-top: 10px; }
+  .deploy-card p { font-size: 13px; color: #64748b; }
+
+  /* Slide 7 — Summary */
+  .s7 { background: linear-gradient(135deg, #7b1fa2 0%, #d32f2f 100%); text-align: center; }
+  .s7 h2 { font-size: 48px; font-weight: 800; margin-bottom: 20px; }
+  .s7 p { font-size: 20px; opacity: 0.85; max-width: 700px; line-height: 1.7; }
+  .checklist { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; text-align: left; }
+  .check-item { display: flex; align-items: center; gap: 14px; font-size: 18px; }
+  .check-item .tick { background: rgba(255,255,255,0.2); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+
+  /* Nav dots */
+  .nav { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 100; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s; }
+  .dot.active, .dot:hover { background: #fff; transform: scale(1.3); }
+
+  /* Slide label */
+  .slide-num { position: absolute; bottom: 20px; right: 30px; font-size: 12px; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav"></nav>
+
+<!-- SLIDE 1: Title -->
+<div class="slide s1" id="slide-1">
+  <div class="logo">🚌</div>
+  <h1>RedBus Clone</h1>
+  <h2>Full-Stack MERN Web Application</h2>
+  <div class="tag">MongoDB &nbsp;·&nbsp; Express &nbsp;·&nbsp; React &nbsp;·&nbsp; Node.js</div>
+  <div class="slide-num">1 / 7</div>
+</div>
+
+<!-- SLIDE 2: Project Overview -->
+<div class="slide s2" id="slide-2">
+  <h2>📋 Project Overview</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🎯</div>
+      <h3>Purpose</h3>
+      <p>A complete bus ticket booking platform where users can search routes, book tickets, hire buses, and make payments online.</p>
+    </div>
+    <div class="card">
+      <div class="icon">👤</div>
+      <h3>Users</h3>
+      <p>Registered users can log in securely using JWT authentication, manage their bookings, and track travel history.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💳</div>
+      <h3>Payments</h3>
+      <p>Integrated Stripe payment gateway allowing users to pay for tickets and bus hire services securely online.</p>
+    </div>
+  </div>
+  <div class="slide-num">2 / 7</div>
+</div>
+
+<!-- SLIDE 3: Tech Stack -->
+<div class="slide s3" id="slide-3">
+  <h2>🛠️ Tech Stack</h2>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <div class="stack-icon">⚛️</div>
+      <div>
+        <h3>React.js</h3>
+        <p>Frontend UI with React Router, component-based architecture, and CSS Modules for styling.</p>
+        <span class="badge">Frontend</span>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🟩</div>
+      <div>
+        <h3>Node.js + Express</h3>
+        <p>RESTful API backend handling routes for buses, bookings, customers, and authentication.</p>
+        <span class="badge">Backend</span>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🍃</div>
+      <div>
+        <h3>MongoDB + Mongoose</h3>
+        <p>NoSQL database with well-designed schemas for users, buses, bookings, and routes.</p>
+        <span class="badge">Database</span>
+      </div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🔐</div>
+      <div>
+        <h3>JWT Authentication</h3>
+        <p>Secure register & login with JSON Web Tokens, bcrypt password hashing, and protected routes.</p>
+        <span class="badge">Security</span>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">3 / 7</div>
+</div>
+
+<!-- SLIDE 4: Architecture -->
+<div class="slide s4" id="slide-4">
+  <h2>🏗️ Architecture Overview</h2>
+  <div class="arch">
+    <div class="arch-box frontend">
+      <div class="icon">⚛️</div>
+      <h3>React Frontend</h3>
+      <p>Netlify</p>
+      <p style="font-size:11px;color:#3b82f6;margin-top:6px;">Port 3000</p>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box auth">
+      <div class="icon">🔐</div>
+      <h3>JWT Auth</h3>
+      <p>Register / Login</p>
+      <p style="font-size:11px;color:#f43f5e;margin-top:6px;">Middleware</p>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box backend">
+      <div class="icon">🟩</div>
+      <h3>Express API</h3>
+      <p>Railway</p>
+      <p style="font-size:11px;color:#f59e0b;margin-top:6px;">Port 3020</p>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-box db">
+      <div class="icon">🍃</div>
+      <h3>MongoDB</h3>
+      <p>Mongoose ODM</p>
+      <p style="font-size:11px;color:#10b981;margin-top:6px;">Atlas / Local</p>
+    </div>
+  </div>
+  <div style="margin-top:36px;background:#0f172a;border-radius:12px;padding:20px 28px;width:100%;font-size:13px;color:#64748b;line-height:1.8;">
+    <span style="color:#34d399;font-weight:700;">API Routes:</span> &nbsp;
+    /api/register &nbsp;·&nbsp; /api/login &nbsp;·&nbsp; /bus &nbsp;·&nbsp; /booking &nbsp;·&nbsp; /customer &nbsp;·&nbsp; /route &nbsp;·&nbsp; /bookinghire &nbsp;·&nbsp; /busservice &nbsp;·&nbsp; /v1/api/stripe-payments
+  </div>
+  <div class="slide-num">4 / 7</div>
+</div>
+
+<!-- SLIDE 5: CRUD Features -->
+<div class="slide s5" id="slide-5">
+  <h2>⚙️ CRUD Features</h2>
+  <div class="feature-list">
+    <div class="feature">
+      <div class="num">1</div>
+      <div>
+        <h3>🚌 Bus Management</h3>
+        <p>Create, Read, Update, Delete bus records including routes, seats, and schedules via REST API.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="num">2</div>
+      <div>
+        <h3>🎫 Booking System</h3>
+        <p>Users can create bookings, view booking history, update seat selection, and cancel reservations.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="num">3</div>
+      <div>
+        <h3>👤 Customer Management</h3>
+        <p>Full CRUD for customer profiles including personal info, travel preferences, and booking history.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="num">4</div>
+      <div>
+        <h3>🚐 Bus Hire Service</h3>
+        <p>Users can create, manage, and track bus hire bookings as a separate CRUD module.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">5 / 7</div>
+</div>
+
+<!-- SLIDE 6: Deployment -->
+<div class="slide s6" id="slide-6">
+  <h2>🚀 Deployment</h2>
+  <div class="deploy-grid">
+    <div class="deploy-card">
+      <div class="icon">🐙</div>
+      <h3>GitHub</h3>
+      <p>Source code repository with full project history and README documentation.</p>
+      <div class="url">github.com/shahzaibkk1213/redbus-mern</div>
+    </div>
+    <div class="deploy-card">
+      <div class="icon">🌐</div>
+      <h3>Netlify</h3>
+      <p>React frontend deployed with CI/CD pipeline. Auto-deploys on every GitHub push.</p>
+      <div class="url">astounding-genie-e4914f.netlify.app</div>
+    </div>
+    <div class="deploy-card">
+      <div class="icon">🚂</div>
+      <h3>Railway</h3>
+      <p>Node.js + Express backend deployed with environment variables configured securely.</p>
+      <div class="url">Railway — redbus-mern backend</div>
+    </div>
+  </div>
+  <div style="margin-top:28px;background:#0f172a;border-radius:12px;padding:16px 24px;width:100%;font-size:13px;color:#64748b;">
+    ✅ &nbsp;<span style="color:#38bdf8;">Environment Variables</span> configured on Railway: DATABASE, PORT, JWT_SECRET, STRIPE_KEY
+  </div>
+  <div class="slide-num">6 / 7</div>
+</div>
+
+<!-- SLIDE 7: Summary -->
+<div class="slide s7" id="slide-7">
+  <h2>✅ Project Complete!</h2>
+  <p>A fully functional full-stack MERN bus booking platform — designed, built, and deployed end-to-end.</p>
+  <div class="checklist">
+    <div class="check-item"><div class="tick">✅</div> React Frontend consuming Express REST API with CORS</div>
+    <div class="check-item"><div class="tick">✅</div> MongoDB database with Mongoose schemas</div>
+    <div class="check-item"><div class="tick">✅</div> JWT Authentication — Register, Login, Protected Routes</div>
+    <div class="check-item"><div class="tick">✅</div> 4 fully working CRUD features</div>
+    <div class="check-item"><div class="tick">✅</div> Backend deployed to Railway</div>
+    <div class="check-item"><div class="tick">✅</div> Frontend deployed to Netlify</div>
+    <div class="check-item"><div class="tick">✅</div> GitHub repository with README</div>
+  </div>
+  <div class="slide-num">7 / 7</div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const nav = document.getElementById('nav');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => slides[i].scrollIntoView({ behavior: 'smooth' });
+    nav.appendChild(dot);
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(slides).indexOf(entry.target);
+        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.5 });
+  slides.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
